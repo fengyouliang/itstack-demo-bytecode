@@ -32,7 +32,7 @@ public class MyAgent {
             InterceptPoint[] interceptPoints = plugin.buildInterceptPoint();
             for (InterceptPoint point : interceptPoints) {
 
-                AgentBuilder.Transformer transformer = (builder, typeDescription, classLoader, javaModule) -> {
+                AgentBuilder.Transformer transformer = (builder, typeDescription, classLoader, javaModule, protectionDomain) -> {
                     builder = builder.visit(Advice.to(plugin.adviceClass()).on(point.buildMethodsMatcher()));
                     return builder;
                 };

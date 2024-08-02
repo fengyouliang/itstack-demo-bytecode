@@ -22,7 +22,7 @@ public class MyAgent {
     public static void premain(String agentArgs, Instrumentation inst) {
         System.out.println("this is my agent：" + agentArgs);
         
-        AgentBuilder.Transformer transformer = (builder, typeDescription, classLoader, javaModule) -> {
+        AgentBuilder.Transformer transformer = (builder, typeDescription, classLoader, javaModule, protectionDomain) -> {
             return builder
                     .method(ElementMatchers.any()) // 拦截任意方法
                     .intercept(MethodDelegation.to(MethodCostTime.class)); // 委托

@@ -28,7 +28,7 @@ public class MyAgent {
         AgentBuilder agentBuilder = new AgentBuilder.Default();
 
 
-        AgentBuilder.Transformer transformer = (builder, typeDescription, classLoader, javaModule) -> {
+        AgentBuilder.Transformer transformer = (builder, typeDescription, classLoader, javaModule, protectionDomain) -> {
             builder = builder.visit(
                     Advice.to(MyAdvice.class)
                             .on(ElementMatchers.isMethod()
